@@ -65,3 +65,10 @@ Route::get('/productdetail/{id}', [App\Http\Controllers\ProductController::class
 Route::get('/cityproducts/{id}', [App\Http\Controllers\ProductController::class, 'cityproducts'])->name('cityproducts');
 
 // Product 
+
+
+// streaming
+Route::get('/stream', function () {
+    return view('stream');
+});
+// streaming

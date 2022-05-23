@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/start-recoding', [App\Http\Controllers\StreamController::class, 'start_recoding']);
+Route::post('/stop-recoding', [App\Http\Controllers\StreamController::class, 'stop_recoding']);

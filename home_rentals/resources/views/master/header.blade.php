@@ -42,6 +42,10 @@
     <script type="text/javascript">
     var base_url = "/";
     </script>
+    <!-- VIDEO STREAMING -->
+    <link href="https://vjs.zencdn.net/7.2.3/video-js.css" rel="stylesheet">
+
+
     <!-- <script type="text/javascript" charset="utf-8" id="zm-extension" src="chrome-extension://fdcgdnkidjaadafnichfpabhfomcebme/scripts/webrtc-patch.js" async=""></script> -->
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
