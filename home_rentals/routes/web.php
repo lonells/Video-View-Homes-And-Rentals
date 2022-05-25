@@ -42,8 +42,8 @@ Route::get('/countries', function () {
     return view('countries',compact('data'));
 });
 
-Route::get('/states/{id}', [App\Http\Controllers\ProductController::class, 'statesget'])->name('statesget');
-Route::get('/city/{id}', [App\Http\Controllers\ProductController::class, 'cityget'])->name('cityget');
+Route::get('/states/{id}/{country}', [App\Http\Controllers\ProductController::class, 'statesget'])->name('statesget');
+Route::get('/city/{id}/{state}', [App\Http\Controllers\ProductController::class, 'cityget'])->name('cityget');
 
 
 Route::get('/listing', function () {

@@ -40,18 +40,18 @@ class ProductController extends Controller
     // Category Filter 
 
     // State 
-    function statesget($id)
+    function statesget($id, $country)
     {   
         $data=DB::table('region')->where('country_id',$id)->get();
-        return view('states',compact('data'));
+        return view('states',compact('data', 'country'));
     }
     // State 
 
      // City 
-     function cityget($id)
+     function cityget($id,$state)
      {   
          $data=DB::table('city')->where('region_id',$id)->get();
-         return view('city',compact('data'));
+         return view('city',compact('data', 'state'));
      }
 
      function cityproducts($id)

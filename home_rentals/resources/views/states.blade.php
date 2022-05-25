@@ -28,7 +28,7 @@ section.aboutsecbanner {
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="abouttext2">
-                    <h2>Countries</h2>
+                    <h2>{{$country}}</h2>
                 </div>
             </div>
         </div>
@@ -45,7 +45,11 @@ section.aboutsecbanner {
                 <select name="region" id="region" onchange="window.location.href=this.value;">
                     <option>Select</option>
                     @foreach ($data as $item)
+<<<<<<< Updated upstream
                         <option value="{{ url('/city') }}/{{ $item->id }}">{{ $item->region }}</option>
+=======
+                        <option value="{{ url('/city') }}/{{ $item->id }}/{{ $item->region }}">{{ $item->region }}</option>
+>>>>>>> Stashed changes
                     @endforeach
                 </select>
             </div>
@@ -55,7 +59,11 @@ section.aboutsecbanner {
                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                    <ul class="statecitycountry">
                        <li>
+<<<<<<< Updated upstream
                            <a href="{{ url('/city') }}/{{ $item->id }}" data-toggle="collapse"
+=======
+                           <a href="{{ url('/city') }}/{{ $item->id }}/{{ $item->region }}" data-toggle="collapse"
+>>>>>>> Stashed changes
                                onclick="window.location='http://www.videoviewhomesandrentals.com/state/1'"
                                role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;{{ $item->region }}
                            </a>

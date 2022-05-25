@@ -45,7 +45,11 @@ section.aboutsecbanner {
             <select name="country" id="country" onchange="window.location.href=this.value;">
                 <option>Select</option>
                 @foreach ($data as $item)
+<<<<<<< Updated upstream
                     <option value="{{ url('/states') }}/{{ $item->id }}">{{ $item->country }}</option>
+=======
+                    <option value="{{ url('/states') }}/{{ $item->id }}/{{ $item->country }}">{{ $item->country }}</option>
+>>>>>>> Stashed changes
                 @endforeach
             </select>
             </div>
@@ -55,7 +59,11 @@ section.aboutsecbanner {
                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                    <ul class="statecitycountry">
                        <li>
+<<<<<<< Updated upstream
                            <a href="{{ url('/states') }}/{{ $item->id }}" data-toggle="collapse"
+=======
+                           <a href="{{ url('/states') }}/{{ $item->id }}/{{ $item->country }}" data-toggle="collapse"
+>>>>>>> Stashed changes
                                onclick=""
                                role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;{{ $item->country }}
                            </a>
