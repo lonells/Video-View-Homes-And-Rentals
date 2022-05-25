@@ -41,26 +41,36 @@ section.aboutsecbanner {
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <h2>City</h2>
             </div>
-            <div class="row">
-                @foreach ($data as $item)
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <select name="city" id="city" onchange="window.location.href=this.value;">
+                    <option>Select</option>
+                    @foreach ($data as $item)
+                        <option value="{{ url('/cityproducts') }}/{{ $item->id }}">{{ $item->city }}</option>
+                    @endforeach
+                </select>
+            </div>
 
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                    <ul class="statecitycountry">
-                        <li>
-                            <a href="{{ url('/cityproducts') }}/{{ $item->id }}" data-toggle="collapse"
-                                role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;{{ $item->city }}
-                            </a>
-                        </li>
-                        <div class="clearfix"></div>
-                    </ul>
-                </div>
+           <div class="row">
+               @foreach ($data as $item)
 
-                @endforeach
+               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                   <ul class="statecitycountry">
+                       <li>
+                           <a href="{{ url('/cityproducts') }}/{{ $item->id }}" data-toggle="collapse"
+                               role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;{{ $item->city }}
+                           </a>
+                       </li>
+                       <div class="clearfix"></div>
+                   </ul>
+               </div>
 
+               @endforeach
             </div>
         </div>
 </section>
 
 <!-- statecity U.S.A end -->
-
+<script>
+    $('#city').select2();
+</script>
 @endsection

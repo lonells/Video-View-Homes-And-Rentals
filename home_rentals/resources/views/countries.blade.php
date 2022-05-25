@@ -41,27 +41,38 @@ section.aboutsecbanner {
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <h2>Country</h2>
             </div>
-            <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <select name="country" id="country" onchange="window.location.href=this.value;">
+                <option>Select</option>
                 @foreach ($data as $item)
+                    <option value="{{ url('/states') }}/{{ $item->id }}">{{ $item->country }}</option>
+                @endforeach
+            </select>
+            </div>
+           <div class="row">
+               @foreach ($data as $item)
 
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                    <ul class="statecitycountry">
-                        <li>
-                            <a href="{{ url('/states') }}/{{ $item->id }}" data-toggle="collapse"
-                                onclick=""
-                                role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;{{ $item->country }}
-                            </a>
-                        </li>
+               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                   <ul class="statecitycountry">
+                       <li>
+                           <a href="{{ url('/states') }}/{{ $item->id }}" data-toggle="collapse"
+                               onclick=""
+                               role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;{{ $item->country }}
+                           </a>
+                       </li>
                         <div class="clearfix"></div>
                     </ul>
-                </div>
+               </div>
 
-                @endforeach
+               @endforeach
 
-            </div>
         </div>
+        </div>
+    </div>
 </section>
 
 <!-- statecity U.S.A end -->
-
+<script>
+    $('#country').select2();
+</script>
 @endsection

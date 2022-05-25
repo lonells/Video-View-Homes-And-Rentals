@@ -41,27 +41,38 @@ section.aboutsecbanner {
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <h2>States</h2>
             </div>
-            <div class="row">
-                @foreach ($data as $item)
-
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                    <ul class="statecitycountry">
-                        <li>
-                            <a href="{{ url('/city') }}/{{ $item->id }}" data-toggle="collapse"
-                                onclick="window.location='http://www.videoviewhomesandrentals.com/state/1'"
-                                role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;{{ $item->region }}
-                            </a>
-                        </li>
-                        <div class="clearfix"></div>
-                    </ul>
-                </div>
-
-                @endforeach
-
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <select name="region" id="region" onchange="window.location.href=this.value;">
+                    <option>Select</option>
+                    @foreach ($data as $item)
+                        <option value="{{ url('/city') }}/{{ $item->id }}">{{ $item->region }}</option>
+                    @endforeach
+                </select>
             </div>
+           <div class="row">
+               @foreach ($data as $item)
+
+               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                   <ul class="statecitycountry">
+                       <li>
+                           <a href="{{ url('/city') }}/{{ $item->id }}" data-toggle="collapse"
+                               onclick="window.location='http://www.videoviewhomesandrentals.com/state/1'"
+                               role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;{{ $item->region }}
+                           </a>
+                       </li>
+                       <div class="clearfix"></div>
+                   </ul>
+               </div>
+
+               @endforeach
+
+           </div>
+        </div>
         </div>
 </section>
-
+<script>
+    $('#region').select2();
+</script>
 <!-- statecity U.S.A end -->
 
 @endsection

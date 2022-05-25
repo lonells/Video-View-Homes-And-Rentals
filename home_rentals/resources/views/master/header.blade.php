@@ -36,9 +36,11 @@
     <link href="{{ url('/') }}/assets/css/glider.css" rel="stylesheet" type="text/css" />
     <link href="{{ url('/') }}/assets/css/toastr.css" rel="stylesheet" type="text/css" />
     <link href="{{ url('/') }}/assets/css/offcanvas-menu.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="{{ url('/') }}/assets/js/jquery.min.js"></script>
     <link rel="stylesheet" href="{{ url('/') }}/assets/css/fbstyle.css" />
     <script src="{{ url('/') }}/assets/js/jquery.fancybox.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script type="text/javascript">
     var base_url = "/";
     </script>
