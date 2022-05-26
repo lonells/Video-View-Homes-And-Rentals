@@ -20,3 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/start-recoding', [App\Http\Controllers\StreamController::class, 'start_recoding']);
 Route::post('/stop-recoding', [App\Http\Controllers\StreamController::class, 'stop_recoding']);
+Route::get('/streams', [App\Http\Controllers\StreamController::class, 'streams']);
+Route::get('/ping-stream/{name}', [App\Http\Controllers\StreamController::class, 'ping_stream']);

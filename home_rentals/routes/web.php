@@ -67,8 +67,7 @@ Route::get('/cityproducts/{id}', [App\Http\Controllers\ProductController::class,
 // Product 
 
 
-// streaming
-Route::get('/stream', function () {
-    return view('stream');
-});
+// streaming & videos
+Route::get('/stream/{section}', [App\Http\Controllers\StreamController::class, 'index']);
+Route::get('/video/{id}', [App\Http\Controllers\StreamController::class, 'video_view']);
 // streaming

@@ -41,28 +41,101 @@ section.productdetailbanner {
         </div>
     </div>
 </section>
-
 <section class="parallax_section  active-stream" data-parallax="scroll" data-bleed="10" id="home">
     <div class="center_content-chat">
         <div class="container">
             <div class="content-video">
-                <div class="card" style="margin: 0 auto;display: block;width: 100%; ">
-                    <div class="card-body" style=" margin: 20px 10px; ">
-                        <!-- list of all available broadcasting rooms -->
-                        <div class="row">
-                            <div class="col-lg-3 col-md-3">
-                                <p>Put this streaming url on your streaming source; <code>rtmp://192.168.43.196:1935/app</code></p>
-                                <p>stream key is <code>passthrough</code></p>
-                                <button class="btn btn-info recording-btn" onclick="streamRecording()">Start recording</button>
-                            </div>
-                            <div class="col-lg-9 col-md-9">
-                                <!-- HTML -->
-                                <video id='hls-example'  class="video-js vjs-default-skin" width="850" height="450" controls>
-                                    <source type="application/x-mpegURL" src="http://192.168.43.196:8080/app/passthrough/playlist.m3u8">
-                                </video>
-                            </div>
+                <!-- list of all available broadcasting rooms -->
+                <ul class="nav nav-tabs">
+                  <li class="nav-item">
+                    <a class="nav-link {{ ($data['section'] == 'live') ? 'active' : '' }}" aria-current="page" href="/homes-rentals/stream/live">Live Stream</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link {{ ($data['section'] == 'previous') ? 'active' : '' }}" href="/homes-rentals/stream/previous">Previous streams</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link {{ ($data['section'] == 'recorded') ? 'active' : '' }}" href="/homes-rentals/stream/recorded">Recorded streams</a>
+                  </li>
+                  <li class="nav-item" >
+                    <a class="nav-link {{ ($data['section'] == 'uploads') ? 'active' : '' }}" href="/homes-rentals/stream/uploads">Uploaded videos</a>
+                  </li>
+                </ul>
+                <br>  
+                <div class="streaming-section"></div>
+                <div style="min-height: 400px;">
+                    @if ($data['section'] == 'live')
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3">
+                            <p>Put this streaming url on your streaming source; <code>rtmp://192.168.43.196:1935/app</code></p>
+                            <p>stream key is <code>passthrough</code></p>
+                            <button class="btn btn-info recording-btn" onclick="streamRecording()">Start recording</button>
+                        </div>
+                        <div class="col-lg-9 col-md-9">
+                            <!-- HTML -->
+                            <video id='hls-example'  class="video-js vjs-default-skin" width="850" height="450" controls>
+                                <source type="application/x-mpegURL" src="{{$data['url']}}/app/passthrough/playlist.m3u8">
+                            </video>
                         </div>
                     </div>
+                    @endif
+                    @if ($data['section'] == 'previous')
+                        <table class="table caption-top" style="padding: 30px;caption-side: bottom;text-align: right;letter-spacing: 1px;">
+                          <caption>Streams</caption>
+                          <thead>
+                            <tr>
+                              <th scope="col">Stream ID</th>
+                              <th scope="col">Source type</th>
+                              <th scope="col">Source url</th>
+                              <th scope="col">Name</th>
+                              <th scope="col">Start Time</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                        <?php
+                            foreach ($data["items"] as $stream):
+                        ?>
+                                <tr>
+                                  <td>{{$stream['id']}}</td>
+                                  <td>{{$stream['source_type']}}</td>
+                                  <td>{{$stream['source_url']}}</td>
+                                  <td>{{$stream['name']}}</td>
+                                  <td>{{$stream['start_time']}}</td>
+                                </tr>
+                        <?php
+                            endforeach;
+                        ?>
+                      </tbody>
+                    </table>                    
+                    @endif
+                    @if ($data['section'] == 'recorded')
+                        <table class="table" style="padding: 30px;caption-side: bottom;text-align: right;letter-spacing: 1px;">
+                          <caption>Streams</caption>
+                          <thead>
+                            <tr>
+                              <th scope="col">Stream name</th>
+                              <th scope="col">Source url</th>
+                              <th scope="col">Length</th>
+                              <th scope="col">Description</th>
+                              <th scope="col">Created at</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                        <?php
+                            foreach ($data["items"] as $video):
+                        ?>
+                                <tr>
+                                  <td><a href="/homes-rentals/video{{$video['source_url']}}">{{$video['stream_name']}}</a></td>
+                                  <td><a href="/homes-rentals/video{{$video['source_url']}}">{{$video['source_url']}}</a></td>
+                                  <td>{{$video['length']}}</td>
+                                  <td>{{$video['description']}}</td>
+                                  <td>{{$video['created_at']}}</td>
+                                </tr>
+                        <?php
+                            endforeach;
+                        ?>
+                      </tbody>
+                    </table>                    
+                    @endif                    
                 </div>
             </div>
         </div>

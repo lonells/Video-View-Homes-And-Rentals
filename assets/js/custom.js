@@ -23,6 +23,24 @@ $(function() {
 
 
 $(document).ready(function() {
+    if ($(".streaming-section").length > 0) {
+        setInterval(function(){
+            $.ajax({
+                type: "GET",
+                dataType: 'json',
+                url: "http://localhost/homes-rentals/api/ping-stream/bypass_stream",
+                complete: function (data) {
+
+                },
+                success: function (data) {
+
+                  },
+                error: function(data){
+                }      
+            });
+        }, 5000);
+    }
+
     $(".fancybox").fancybox();
     // VIDEO STREAMING
     var player = videojs('hls-example');

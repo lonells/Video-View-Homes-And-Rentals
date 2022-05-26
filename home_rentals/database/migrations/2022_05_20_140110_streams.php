@@ -15,12 +15,15 @@ return new class extends Migration
     {
         Schema::create('streams', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->string('token');
-            $table->text('source_details');
+            $table->integer('user_id')->nullable();
+            $table->string('token')->nullable();
+            $table->string('source_type');
+            $table->string('source_url');
+            $table->string('name');
+            $table->text('source_details')->nullable();
             $table->text('description')->nullable();
-            $table->dateTimeTz('start_time', $precision = 0);
-            $table->dateTimeTz('end_time', $precision = 0);
+            $table->text('start_time', $precision = 0);
+            $table->text('end_time', $precision = 0)->nullable();
             $table->timestamps();
         });
     }
