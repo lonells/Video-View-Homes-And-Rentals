@@ -279,7 +279,7 @@
                                             FORM</a></li>
                                     <li><a href="{{ url('/aboutus') }}">About Us</a></li>
                                     <li>
-                                        <a href="https://www.logodesignventure.com/project/admin" target="_blank">
+                                        <a href="{{ url('/uploadservice') }}">
                                             Upload a Product <span><i class="fa fa-plus"></i></span>
                                         </a>
                                     </li>
