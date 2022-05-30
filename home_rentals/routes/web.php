@@ -54,6 +54,10 @@ Route::get('/serviceform', function () {
     return view('service_form');
 });
 
+Route::get('/uploadservice', function () {
+    return view('uploadservice_product');
+});
+
 
 // Product 
 Route::get('/products', [App\Http\Controllers\ProductController::class, 'index'])->name('products');
