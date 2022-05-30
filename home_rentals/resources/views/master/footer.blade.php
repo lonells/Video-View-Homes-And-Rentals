@@ -56,6 +56,12 @@
 <script src="{{ url('/') }}/assets/js/custom.js"></script>
 <script src="{{ url('/') }}/assets/js/toastr.js"></script>
 <script src="{{ url('/') }}/assets/js/tkd_script.js"></script>
+<!-- VIDEO STREAMING -->
+<script src="https://vjs.zencdn.net/ie8/ie8-version/videojs-ie8.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-hls/5.14.1/videojs-contrib-hls.js"></script>
+<script src="https://vjs.zencdn.net/7.2.3/video.js"></script>
+
+
 <!-- <script src="assets/js/ca-script.js"></script> -->
 <script>
 $('ul.nav li.dropdown').hover(function() {
