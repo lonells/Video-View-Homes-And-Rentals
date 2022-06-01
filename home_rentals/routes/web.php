@@ -54,9 +54,9 @@ Route::get('/serviceform', function () {
     return view('service_form');
 });
 
-Route::get('/uploadservice', function () {
-    return view('uploadservice_product');
-});
+Route::get('/uploadproduct', [App\Http\Controllers\ProductServiceController::class, 'uploadproduct']);
+Route::post('/uploadproduct_service', [App\Http\Controllers\ProductServiceController::class, 'uploadproduct_service']);
+Route::get('/productservices', [App\Http\Controllers\ProductServiceController::class, 'index'])->name('productservices');
 
 
 // Product 
