@@ -73,6 +73,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&amp;display=swap"
         rel="stylesheet">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body class="responsive" data-gr-c-s-loaded="true">
@@ -261,7 +262,7 @@
                             <div id="bs-example-navbar-collapse-1">
                                 <ul class="nav navbar-nav">
                                     <li class="active"><a href="{{ url('/') }}">Home</a></li>
-                                    <li><a href="{{ url('/products') }}">Products</a>
+                                    <li><a href="{{ url('/productservices') }}">Products</a>
                                     <li class="dropdown tour"><a href="javascript:void(0)" class="dropdown-toggle"
                                             data-toggle="dropdown">Home Tour<b class="caret"></b></a>
                                         <ul class="dropdown-menu">
@@ -279,7 +280,7 @@
                                             FORM</a></li>
                                     <li><a href="{{ url('/aboutus') }}">About Us</a></li>
                                     <li>
-                                        <a href="{{ url('/uploadservice') }}">
+                                        <a href="{{ url('/uploadproduct') }}">
                                             Upload a Product <span><i class="fa fa-plus"></i></span>
                                         </a>
                                     </li>
