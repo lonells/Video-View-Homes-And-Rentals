@@ -51,7 +51,6 @@ section.aboutsecbanner {
 <section class="section-page mt-50 mb-50">
     <div class="container">
         <div class="row">
-            <?php echo public_path();?>
             <div class="col-md-2 col-sm-12"></div>
             <div class="col-md-8 col-sm-12">
                 <div class="video-wrapper mtb-15">
