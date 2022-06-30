@@ -40,7 +40,7 @@ section.aboutsecbanner {
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="abouttext2">
-                    <h2>Flint Michigan Automobiles</h2>
+                    <h2>Input Devices</h2>
                 </div>
             </div>
         </div>
@@ -49,76 +49,21 @@ section.aboutsecbanner {
 <!-- banner sec end -->
 <!-- full upload video section -->
 <section class="section-page mt-50 mb-50">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-2 col-sm-12"></div>
-            <div class="col-md-8 col-sm-12">
-                <div class="video-wrapper mtb-15">
-                    <div class="video-container" id="video-container">
-                    	<video controls preload="metadata" poster="{{ url('/') }}/productimages/{{ $oneproduct->servicephoto }}">
-                    		<source src="{{ url('/') }}/productvideos/{{ $oneproduct->servicevideo }}" type="video/mp4">
-                    	</video>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2 col-sm-12"></div>
-        </div>
-    </div> 
-    <!-- uploading video form section -->
-    <div class="container mb-20">
-            <!--<form class="uploadform" action="" method="post" enctype="multipart/form-data">-->
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 center">
-                        <div class="upload-btn-wrapper">
-                          <a class="btn" href="{{ url('/') }}/uploadproduct">+ Upload Product</a>
-                          <!--<input type="file" name="servicephoto" />-->
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 center">
-                        <div class="upload-btn-wrapper">
-                          <a class="btn" href="{{ url('/') }}/productservices/#">+ Upload Services</a>
-                          <!--<input type="file" name="servicevideo" />-->
-                        </div>
-                    </div>
-                </div> 
-            <!--</form>-->
-    </div>
     <!-- upload video section -->
     <div class="container">
         <div class="row">
-        @foreach($product as $item)
+        @foreach($devices as $item)
             <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 mb-15">
                 <div class="upload-video-box">
                     <div class="video-wrapper">
                         <div class="video-container" id="video-container">
-                        	<video controls preload="metadata" poster="{{ url('/') }}/productimages/{{ $item->servicephoto }}">
-                        		<source src="{{ url('/') }}/productvideos/{{ $item->servicevideo }}" type="video/mp4">
-                        	</video>
+                        	<img src="{{ url('/') }}/assets/images/{{$item->image}}" height="200px" weight="200px">
                         </div>
                     </div>
                     <div class="upload-video-content">
                         <div class="col-2-grid prd-title-btn-info">
-                            <h4>{{ $item->product }}</h4>
-                            <button class="btn-buynow">Buy Now</button>
+                            <h4>{{ $item->name }}</h4>
                         </div>
-                        <div class="prd-address">
-                            <h4>About: {{ $item->about }} , {{ $item->pick_ship }}</h4>
-                        </div>    
-                        <div class="col-2-grid prd-price">   
-                            <h4>Price: </h4>
-                            <h4>${{ $item->live_stream_price }}  </h4>
-                        </div>
-                        <div class="col-2-grid prd-views-likes">
-                            <h4>Views Likes:</h4>
-                            <button class="btn-views-links"><img src="assets/images/thumb-up.png" class="img-responsive" alt="img"></button>
-                        </div>   
-                        <div class="col-2-grid prd-qty-available">
-                            <h4>Quantity Available: {{ $item->quantity_available }}</h4>
-                        </div>
-                        <div class="col-2-grid btn-live-info">
-                            <a href="{{ url('/') }}/inputDevices" class="btn-live">Live Stream Product <i class="fa fa-video-camera" aria-hidden="true"></i></a>
-                            <button class="btn-live">Request Live  <i class="fa fa-video-camera" aria-hidden="true"></i></button>
-                        </div>    
                     </div>
                 </div>
             </div>

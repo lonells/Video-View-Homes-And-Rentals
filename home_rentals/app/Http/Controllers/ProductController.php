@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use View;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Productservice;
 use Session;
 use DB;
 use Auth;
@@ -54,9 +55,9 @@ class ProductController extends Controller
          return view('city',compact('data', 'state'));
      }
 
-     function cityproducts($id)
-     {   
-        $product=Product::where(['city_id'=>$id,'is_deleted'=>0,'is_active'=>1])->orderBy('created_at', 'DESC')->paginate(15);
+     function cityproducts($id, $city)
+     {    
+        $product = Productservice::where(['city'=>$id, 'status'=>1])->orderBy('created_at', 'DESC')->paginate(15);
         $category=Category::where(['is_deleted'=>0,'is_active'=>1])->get();
          return view('cityproduct',compact('product','category'));
      }

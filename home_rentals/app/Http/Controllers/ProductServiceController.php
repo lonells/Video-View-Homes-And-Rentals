@@ -13,6 +13,7 @@ use DB;
 use App\Models\Productservice;
 use App\Models\Category;
 use App\Models\City;
+use App\Models\InputDevices;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
@@ -105,5 +106,11 @@ class ProductServiceController extends Controller
         else{
             return back()->with('error',trans('message.networkErr'));
         }
+    }
+
+    function inputDevices()
+    {
+        $InputDevices =InputDevices::where('status', 1)->get();
+        return view('inputdevices')->with(['devices'=>$InputDevices]);
     }
 }
