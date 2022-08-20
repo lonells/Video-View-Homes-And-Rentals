@@ -10,7 +10,7 @@ class InputDevices extends Model
     use HasFactory;
 
     protected $table = 'inputdevices';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'id'; 
     protected $fillable = [
         'name', 'description', 'image', 'status', 'created_at', 'updated_at'
     ];
