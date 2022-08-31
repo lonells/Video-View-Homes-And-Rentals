@@ -58,6 +58,8 @@ Route::get('/uploadproduct', [App\Http\Controllers\ProductServiceController::cla
 Route::post('/uploadproduct_service', [App\Http\Controllers\ProductServiceController::class, 'uploadproduct_service']);
 Route::get('/productservices', [App\Http\Controllers\ProductServiceController::class, 'index'])->name('productservices');
 Route::get('/inputDevices', [App\Http\Controllers\ProductServiceController::class, 'inputDevices'])->name('inputDevices');
+Route::post('/getRegions_ajax', [App\Http\Controllers\ProductServiceController::class, 'getRegions_ajax'])->name('getRegions_ajax');
+Route::post('/getCity_ajax', [App\Http\Controllers\ProductServiceController::class, 'getCity_ajax'])->name('getCity_ajax');
 
 
 // Product 

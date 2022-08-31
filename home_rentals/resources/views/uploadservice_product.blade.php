@@ -47,18 +47,36 @@ section.aboutsecbanner {
             {{ csrf_field() }}
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <label>Country:<span class="field_required">*</span></label>
+                        <br>
+                        <select name="country" id="country" onchange="getRegions();" required>
+                        <option value="">--Select Country--</option>
+                        @foreach($countries as $country)
+                            <option value="{{$country->id}}">{{$country->country}}</option>
+                        @endforeach
+                        </select>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <label>Region:<span class="field_required">*</span></label>
+                        <br>
+                        <select name="region" id="region" onchange="getCity();" required>
+                        <option value="">--Select Region--</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <label>City:<span class="field_required">*</span></label>
                         <br>
                         <select name="city" id="city" required>
-                        @foreach($cities as $city)
-                            <option value="{{$city->id}}">{{$city->city}}</option>
-                        @endforeach
+                        <option value="">--Select City--</option>
                         </select>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <label>Category:<span class="field_required">*</span></label>
                         <br>
                         <select name="category" id="category" required>
+                        <option value="">--Select Category--</option>
                         @foreach($categories as $category)
                             <option value="{{$category->id}}">{{$category->name}}</option>
                         @endforeach
@@ -163,5 +181,50 @@ section.aboutsecbanner {
 </section>
 
 <!-- upload service form end -->
+<script>
+    function getRegions() {
+        var countryId = document.getElementById("country").value;
+        let url = "{{url('/getRegions_ajax')}}";
+        let submitData = {"countryId" : countryId }; 
+        $.ajax({
+            type: 'post',
+            url: url,
+            headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: submitData,
+            success: function(data) 
+            {
+                $('#region').html(data);
+            },
+            error: function(jqXHR, textStatus, errorThrown) 
+            {
+
+            }
+        });
+    }  
+    function getCity() {
+        var regionId = document.getElementById("region").value;
+        let url = "{{url('/getCity_ajax')}}";
+        let submitData = {"regionId" : regionId }; 
+        //console.log('submitData', submitData);
+        $.ajax({
+            type: 'post',
+            url: url,
+            headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: submitData,
+            success: function(data) 
+            {
+                $('#city').html(data);
+            },
+            error: function(jqXHR, textStatus, errorThrown) 
+            {
+
+            }
+        });
+    }   
+</script>
 
 @endsection

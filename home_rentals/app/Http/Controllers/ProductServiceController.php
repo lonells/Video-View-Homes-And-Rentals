@@ -12,6 +12,8 @@ use File;
 use DB;
 use App\Models\Productservice;
 use App\Models\Category;
+use App\Models\Country;
+use App\Models\Regions;
 use App\Models\City;
 use App\Models\InputDevices;
 use Illuminate\Support\Facades\Hash;
@@ -30,9 +32,11 @@ class ProductServiceController extends Controller
 
     public function uploadproduct()
     {
+        $Country = Country::get();
+        $Regions = Regions::get();
         $City = City::get();
         $Category =Category::where(['is_deleted'=>0,'is_active'=>1])->get();
-        return view('uploadservice_product')->with(['cities'=>$City])->with(['categories'=>$Category]);
+        return view('uploadservice_product')->with(['countries'=>$Country, 'regions'=>$Regions, 'cities'=>$City])->with(['categories'=>$Category]);
     }
 
     public function uploadproduct_service(Request $request)
@@ -41,6 +45,8 @@ class ProductServiceController extends Controller
             
         ]);
         //dd($request->all());
+        $data['country'] = $request->country;
+        $data['region'] = $request->region;
         $data['city'] = $request->city;
         $data['category'] = $request->category;
         $data['product'] = $request->product;
@@ -112,5 +118,17 @@ class ProductServiceController extends Controller
     {
         $InputDevices =InputDevices::where('status', 1)->get();
         return view('inputdevices')->with(['devices'=>$InputDevices]);
+    }
+    public function getRegions_ajax(Request $request){
+        $countryId = $request->countryId;
+        $Regions = Regions::where('country_id', $countryId)->get();
+        $countData = $Regions->count();
+        return view('ajaxregions')->with(['countData'=>$countData, 'regions'=>$Regions]);
+    }
+    public function getCity_ajax(Request $request){
+        $regionId = $request->regionId;
+        $Cities = City::where('region_id', $regionId)->get();
+        $countData = $Cities->count();
+        return view('ajaxcity')->with(['countData'=>$countData, 'cities'=>$Cities]);
     }
 }
