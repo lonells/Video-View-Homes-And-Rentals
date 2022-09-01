@@ -49,7 +49,7 @@ section.aboutsecbanner {
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <label>Country:<span class="field_required">*</span></label>
                         <br>
-                        <select name="country" id="country" onchange="getRegions();" required>
+                        <select name="country" id="country" onmouseup="getRegions();">
                         <option value="">--Select Country--</option>
                         @foreach($countries as $country)
                             <option value="{{$country->id}}">{{$country->country}}</option>
@@ -59,7 +59,7 @@ section.aboutsecbanner {
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <label>Region:<span class="field_required">*</span></label>
                         <br>
-                        <select name="region" id="region" onchange="getCity();" required>
+                        <select name="region" id="region" onmouseup="getCity();">
                         <option value="">--Select Region--</option>
                         </select>
                     </div>
@@ -68,7 +68,7 @@ section.aboutsecbanner {
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <label>City:<span class="field_required">*</span></label>
                         <br>
-                        <select name="city" id="city" required>
+                        <select name="city" id="city">
                         <option value="">--Select City--</option>
                         </select>
                     </div>
@@ -149,7 +149,7 @@ section.aboutsecbanner {
                         <br>
                         <div class="upload-btn-wrapper">
                           <button class="btn">+ Upload Photo</button>
-                          <input type="file" name="servicephoto" />
+                          <input type="file" name="servicephoto" accept="image/*"/>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -157,7 +157,7 @@ section.aboutsecbanner {
                         <br>
                         <div class="upload-btn-wrapper">
                           <button class="btn">+ Upload Video</button>
-                          <input type="file" name="servicevideo" />
+                          <input type="file" name="servicevideo" accept="video/*"/>
                         </div>
                     </div>
                 </div> 

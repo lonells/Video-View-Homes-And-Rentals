@@ -55,8 +55,8 @@ section.aboutsecbanner {
             <div class="col-md-8 col-sm-12">
                 <div class="video-wrapper mtb-15">
                     <div class="video-container" id="video-container">
-                    	<video controls preload="metadata" poster="{{ url('/') }}/productimages/{{ $oneproduct->servicephoto }}">
-                    		<source src="{{ url('/') }}/productvideos/{{ $oneproduct->servicevideo }}" type="video/mp4">
+                    	<video controls preload="metadata" poster="{{ url('/') }}/home_rentals/public/productimages/{{ $oneproduct->servicephoto }}">
+                    		<source src="{{ url('/') }}/home_rentals/public/productvideos/{{ $oneproduct->servicevideo }}" type="video/mp4">
                     	</video>
                     </div>
                 </div>
@@ -91,8 +91,8 @@ section.aboutsecbanner {
                 <div class="upload-video-box">
                     <div class="video-wrapper">
                         <div class="video-container" id="video-container">
-                        	<video controls preload="metadata" poster="{{ url('/') }}/productimages/{{ $item->servicephoto }}">
-                        		<source src="{{ url('/') }}/productvideos/{{ $item->servicevideo }}" type="video/mp4">
+                        	<video controls preload="metadata" poster="{{ url('/') }}/home_rentals/public/productimages/{{ $item->servicephoto }}">
+                        		<source src="{{ url('/') }}/home_rentals/public/productvideos/{{ $item->servicevideo }}" type="video/mp4">
                         	</video>
                         </div>
                     </div>

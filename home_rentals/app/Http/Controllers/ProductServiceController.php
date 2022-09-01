@@ -60,7 +60,7 @@ class ProductServiceController extends Controller
         $data['live_stream_price'] = $request->live_stream_price;
         $data['pick_ship'] = $request->pick_ship;
         if($request->hasFile('servicephoto')) {
-            $allowedMimeTypes = array(
+            /*$allowedMimeTypes = array(
                 'image/jpeg',
                 'image/png',
                 'image/gif',
@@ -78,33 +78,20 @@ class ProductServiceController extends Controller
                 $imageName = time().rand(1, 100).'.'.$image_file->getClientOriginalExtension();
                 $imagedestinationPath = public_path('/productimages');
                 $image_file->move($imagedestinationPath, $imageName);
-            }          
+            } */
+            $image_file = $request->file('servicephoto');
+            $imageName = time().rand(1, 100).'.'.$image_file->getClientOriginalExtension();
+            $imagedestinationPath = public_path('/productimages');
+            $image_file->move($imagedestinationPath, $imageName);       
+            $data['servicephoto'] = $imageName;  
         }
-        $data['servicephoto'] = $imageName;
-        if($request->hasFile('servicevideo')) {
-            $allowedMimeTypes = array(
-                'video/x-flv',
-                'video/mp4',
-                'video/webm',
-                'video/3gpp',
-                'video/quicktime',
-                'video/x-msvideo',
-                'video/x-ms-wmv',
-                'video/x-m4v'
-            );
+        if($request->hasFile('servicevideo')) { 
             $video_file = $request->file('servicevideo');
-            $mimetype = $video_file->getClientMimeType();
-            if(!in_array($mimetype, $allowedMimeTypes)){
-                return redirect()->route('uploadproduct')->with('error', 'Please select a valid video type');
-                exit;       
-            }
-            else{
-                $videoName = time().rand(1, 100).'.'.$video_file->getClientOriginalExtension();
-                $videodestinationPath = public_path('/productvideos');
-                $video_file->move($videodestinationPath, $videoName);
-            }          
+            $videoName = time().rand(1, 100).'.'.$video_file->getClientOriginalExtension();
+            $videodestinationPath = public_path('/productvideos');
+            $video_file->move($videodestinationPath, $videoName);    
+            $data['servicevideo'] = $videoName;    
         }
-        $data['servicevideo'] = $videoName;
         $Productservice = Productservice::create($data);
         if($Productservice){
             return redirect()->route('productservices')->with('success', 'Product added successfully.');
