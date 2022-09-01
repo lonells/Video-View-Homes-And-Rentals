@@ -12,7 +12,10 @@ use File;
 use DB;
 use App\Models\Productservice;
 use App\Models\Category;
+use App\Models\Country;
+use App\Models\Regions;
 use App\Models\City;
+use App\Models\InputDevices;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
@@ -29,9 +32,11 @@ class ProductServiceController extends Controller
 
     public function uploadproduct()
     {
+        $Country = Country::get();
+        $Regions = Regions::get();
         $City = City::get();
         $Category =Category::where(['is_deleted'=>0,'is_active'=>1])->get();
-        return view('uploadservice_product')->with(['cities'=>$City])->with(['categories'=>$Category]);
+        return view('uploadservice_product')->with(['countries'=>$Country, 'regions'=>$Regions, 'cities'=>$City])->with(['categories'=>$Category]);
     }
 
     public function uploadproduct_service(Request $request)
@@ -40,6 +45,8 @@ class ProductServiceController extends Controller
             
         ]);
         //dd($request->all());
+        $data['country'] = $request->country;
+        $data['region'] = $request->region;
         $data['city'] = $request->city;
         $data['category'] = $request->category;
         $data['product'] = $request->product;
@@ -53,7 +60,7 @@ class ProductServiceController extends Controller
         $data['live_stream_price'] = $request->live_stream_price;
         $data['pick_ship'] = $request->pick_ship;
         if($request->hasFile('servicephoto')) {
-            $allowedMimeTypes = array(
+            /*$allowedMimeTypes = array(
                 'image/jpeg',
                 'image/png',
                 'image/gif',
@@ -71,33 +78,20 @@ class ProductServiceController extends Controller
                 $imageName = time().rand(1, 100).'.'.$image_file->getClientOriginalExtension();
                 $imagedestinationPath = public_path('/productimages');
                 $image_file->move($imagedestinationPath, $imageName);
-            }          
+            } */
+            $image_file = $request->file('servicephoto');
+            $imageName = time().rand(1, 100).'.'.$image_file->getClientOriginalExtension();
+            $imagedestinationPath = public_path('/productimages');
+            $image_file->move($imagedestinationPath, $imageName);       
+            $data['servicephoto'] = $imageName;  
         }
-        $data['servicephoto'] = $imageName;
-        if($request->hasFile('servicevideo')) {
-            $allowedMimeTypes = array(
-                'video/x-flv',
-                'video/mp4',
-                'video/webm',
-                'video/3gpp',
-                'video/quicktime',
-                'video/x-msvideo',
-                'video/x-ms-wmv',
-                'video/x-m4v'
-            );
+        if($request->hasFile('servicevideo')) { 
             $video_file = $request->file('servicevideo');
-            $mimetype = $video_file->getClientMimeType();
-            if(!in_array($mimetype, $allowedMimeTypes)){
-                return redirect()->route('uploadproduct')->with('error', 'Please select a valid video type');
-                exit;       
-            }
-            else{
-                $videoName = time().rand(1, 100).'.'.$video_file->getClientOriginalExtension();
-                $videodestinationPath = public_path('/productvideos');
-                $video_file->move($videodestinationPath, $videoName);
-            }          
+            $videoName = time().rand(1, 100).'.'.$video_file->getClientOriginalExtension();
+            $videodestinationPath = public_path('/productvideos');
+            $video_file->move($videodestinationPath, $videoName);    
+            $data['servicevideo'] = $videoName;    
         }
-        $data['servicevideo'] = $videoName;
         $Productservice = Productservice::create($data);
         if($Productservice){
             return redirect()->route('productservices')->with('success', 'Product added successfully.');
@@ -105,5 +99,23 @@ class ProductServiceController extends Controller
         else{
             return back()->with('error',trans('message.networkErr'));
         }
+    }
+
+    function inputDevices()
+    {
+        $InputDevices =InputDevices::where('status', 1)->get();
+        return view('inputdevices')->with(['devices'=>$InputDevices]);
+    }
+    public function getRegions_ajax(Request $request){
+        $countryId = $request->countryId;
+        $Regions = Regions::where('country_id', $countryId)->get();
+        $countData = $Regions->count();
+        return view('ajaxregions')->with(['countData'=>$countData, 'regions'=>$Regions]);
+    }
+    public function getCity_ajax(Request $request){
+        $regionId = $request->regionId;
+        $Cities = City::where('region_id', $regionId)->get();
+        $countData = $Cities->count();
+        return view('ajaxcity')->with(['countData'=>$countData, 'cities'=>$Cities]);
     }
 }

@@ -116,7 +116,7 @@ section.aboutsecbanner {
                             <h4>Quantity Available: {{ $item->quantity_available }}</h4>
                         </div>
                         <div class="col-2-grid btn-live-info">
-                            <button class="btn-live">Live Stream Product <i class="fa fa-video-camera" aria-hidden="true"></i></button>
+                            <a href="{{ url('/') }}/inputDevices" class="btn-live">Live Stream Product <i class="fa fa-video-camera" aria-hidden="true"></i></a>
                             <button class="btn-live">Request Live  <i class="fa fa-video-camera" aria-hidden="true"></i></button>
                         </div>    
                     </div>

@@ -12,7 +12,7 @@ class Productservice extends Model
     protected $table = 'productservices';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'city', 'category', 'product', 'service', 'about', 'price', 'quantity_available', 'company', 'website', 'product_size', 'status', 'live_stream_price', 'pick_ship', 'servicephoto', 'servicevideo', 'created_at', 'updated_at'
+        'country', 'region', 'city', 'category', 'product', 'service', 'about', 'price', 'quantity_available', 'company', 'website', 'product_size', 'status', 'live_stream_price', 'pick_ship', 'servicephoto', 'servicevideo', 'created_at', 'updated_at'
     ];
 
     public function City()
