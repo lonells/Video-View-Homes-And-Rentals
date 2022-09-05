@@ -25,6 +25,11 @@ section.aboutsecbanner {
 .upload-btn-wrapper .btn {font-family: 'Lato', sans-serif;font-style: italic;font-weight: 700;font-size: 20px;line-height: normal;letter-spacing: 1px;background-color: #062C30;color: white;width: 100%;height: 100%;margin: 0px 0px;padding: 10px 15px;cursor: pointer;}
 .upload-btn-wrapper input[type=file] {font-size: 100px;position: absolute;left: 0;top: 0;opacity: 0;}
 .upload-form-txt p {font-family: 'Lato', sans-serif;font-size: 18px;line-height: normal;}
+@media screen and (min-width: 340px) and (max-width: 1080px) {
+    .upload-service-form{
+        margin-bottom: 60%;
+    }
+}
 </style>
 <!-- about banner sec start -->
 <section class="aboutsecbanner">
@@ -49,7 +54,7 @@ section.aboutsecbanner {
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <label>Country:<span class="field_required">*</span></label>
                         <br>
-                        <select name="country" id="country" onmouseup="getRegions();">
+                        <select name="country" id="country" onchange="getRegions();">
                         <option value="">--Select Country--</option>
                         @foreach($countries as $country)
                             <option value="{{$country->id}}">{{$country->country}}</option>
@@ -59,7 +64,7 @@ section.aboutsecbanner {
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <label>Region:<span class="field_required">*</span></label>
                         <br>
-                        <select name="region" id="region" onmouseup="getCity();">
+                        <select name="region" id="region" onchange="getCity();">
                         <option value="">--Select Region--</option>
                         </select>
                     </div>
