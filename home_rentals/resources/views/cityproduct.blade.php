@@ -53,7 +53,7 @@ section.aboutsecbanner {
     <div class="container">
         <div class="row">
         @foreach($product as $item)
-            <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 mb-15">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <div class="upload-video-box">
                     <div class="video-wrapper">
                         <div class="video-container" id="video-container">
@@ -79,10 +79,11 @@ section.aboutsecbanner {
                             <button class="btn-views-links"><img src="{{ url('/') }}/assets/images/thumb-up.png" class="img-responsive" alt="img"></button>
                         </div>   
                         <div class="col-2-grid prd-qty-available">
-                          <div class="col-2-grid btn-live-info">
-                            <button class="btn-live">Live Stream Product <i class="fa fa-video-camera" aria-hidden="true"></i></button>
-                            <button class="btn-live">Request Live  <i class="fa fa-video-camera" aria-hidden="true"></i></button>
-                        </div>    
+                            <div class="col-2-grid btn-live-info">
+                                <button class="btn-live">Live Stream Product <i class="fa fa-video-camera" aria-hidden="true"></i></button>
+                                <button class="btn-live">Request Live  <i class="fa fa-video-camera" aria-hidden="true"></i></button>
+                            </div>    
+                        </div>
                     </div>
                 </div>
             </div>
